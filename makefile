@@ -11,3 +11,6 @@ run%: $(BIN_DIR)/%.exe
 
 clean:
 	rm -f $(EXE_FILES)
+
+.PHONY: all clean
+.PHONY: run-%
