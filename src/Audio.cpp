@@ -6,7 +6,7 @@ int main()
     sf::RenderWindow window(sf::VideoMode(800, 600), "Reproductor de musica");
 
     sf::Music music;
-    if (!music.openFromFile("./assets/music/sound.ogg"))
+    if (!music.openFromFile("./assets/music/Tekken_theme.m4a"))
     {
         return -1;
     }
