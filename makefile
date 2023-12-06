@@ -1,7 +1,7 @@
 SRC_DIR := src
 BIN_DIR := bin
 
-SFML := -sfml-graphics -sfml-window -sfml-system -sfml-audio -box2d
+SFML := -lsfml-graphics -lsfml-window -lsfml-system -lsfml-audio -lbox2d
 
 CPP_FILES := $(wildcard $(SRC_DIR)/*.cpp)
 
