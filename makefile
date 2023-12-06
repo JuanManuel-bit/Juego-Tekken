@@ -8,7 +8,7 @@ CPP_FILES := $(wildcard $(SRC_DIR)/*.cpp)
 EXE_FILES := $(patsubst $(SRC_DIR)/%.cpp,$(BIN_DIR)/%.exe,$(CPP_FILES))
 
 $(BIN_DIR)/%.exe: $(SRC_DIR)/%.cpp
-	g++ $< -o $@ $(SFML) -Iinclude
+	g++ $< -o $@ $(SFML) -I include
 
 all: $(EXE_FILES)
 
