@@ -1,8 +1,14 @@
-INCLUDE_PATH = -IC:\msys64\mingw64\include\SDL2
-LIB_PATH = -LC:\msys64\mingw64\lib
-LIBS = -lmingw32 -lSDL2main -lSDL2
-FLAGS = -w -Wl,-subsystem,windows
-SDL = $(INCLUDE_PATH) $(LIB_PATH) $(LIBS) $(FLAGS)
+SRC_DIR := src
+BIN_DIR := bin
+
+SFML := -lsfml-graphics -lsfml-window -lsfml-system -lsfml-audio -lbox2d
+
+CPP_FILES := $(wildcard $(SRC_DIR)/*.cpp)
+
+EXE_FILES := $(patsubst $(SRC_DIR)/%.cpp,$(BIN_DIR)/%.exe,$(CPP_FILES))
+
+$(BIN_DIR)/%.exe: $(SRC_DIR)/%.cpp
+	g++ $< -o $@ $(SFML) -Iinclude
 
 all: $(EXE_FILES)
 
