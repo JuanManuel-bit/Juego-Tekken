@@ -1,32 +1,82 @@
-@startuml juego Tekken
+@startuml
 
-Class Personje
-class Imagen
-Class sprite
-Class Teclado
-Class Texto 
-Class Ventana
-Class Audio
-Class Config
-Class GpuPreference
-Class Graphics
-Class Main 
-Class Network
-Class OpenGL
-Class System
-Class Window
+class sf::RenderWindow {
+  +RenderWindow(mode: VideoMode, title: string)
+  +isOpen(): bool
+  +pollEvent(event: Event): bool
+  +clear()
+  +display()
+  +close()
+}
 
-Personje --|> Sprite
-Personje -- Teclado
-Sprite --|> Imagen
-Ventana --|> Graphics
-Ventana -- Audio
-Config --|> GpuPreference
-Config --|> Graphics
-Main -- Network
-Main -- OpenGL
-Main -- Config
-Main -- System
-Main -- Window
+class sf::Music {
+  +openFromFile(file: string): bool
+  +play()
+  +getStatus(): Music::Status
+}
 
+class sf::Sprite {
+  +Sprite(texture: Texture)
+  +setPosition(x: float, y: float)
+  +setTextureRect(rect: IntRect)
+  +move(offsetX: float, offsetY: float)
+}
+
+class sf::Texture {
+  +loadFromFile(file: string): bool
+}
+
+class sf::RectangleShape {
+  +setSize(size: Vector2f)
+  +setPosition(position: Vector2f)
+  +setFillColor(color: Color)
+  +move(offsetX: float, offsetY: float)
+}
+
+class sf::CircleShape {
+  +setFillColor(color: Color)
+}
+
+class Personaje {
+  -shape: RectangleShape
+  -sprite: Sprite
+  -texture: Texture
+  -clock: Clock
+  -frameTime: float
+  -currentFrame: int
+  -numFrames: int
+  +Personaje(position: Vector2f, color: Color)
+  +move(offsetX: float, offsetY: float)
+  +draw(window: RenderWindow)
+  +update()
+}
+
+class LingXiaoyuGame {
+  -window: RenderWindow
+  -pj: Personaje
+  -velocidad: double
+  +LingXiaoyuGame()
+  +handleInput()
+  +update()
+  +draw()
+}
+
+LingXiaoyuGame --> sf::RenderWindow
+LingXiaoyuGame --> Personaje
+Personaje --|> sf::RectangleShape
+Personaje --|> sf::Sprite
+Personaje --|> sf::Texture
+
+sf::RenderWindow "1" --> "1..*" sf::Music
+sf::RenderWindow "1" --> "1..*" sf::Sprite
+sf::RenderWindow "1" --> "1..*" sf::CircleShape
+sf::RenderWindow "1" --> "1..*" sf::RectangleShape
+
+sf::Sprite "1" --> "1" sf::Texture
+sf::Sprite "1" --> "1" sf::Rect<int>
+
+Personaje "1" --> "1" sf::RectangleShape
+Personaje "1" --> "1" sf::Sprite
+Personaje "1" --> "1" sf::Texture
+Personaje "1" --> "1" sf::Clock
 @enduml
