@@ -5,7 +5,7 @@ class Personaje
 public:
     Personaje(sf::Vector2f position, sf::Color color)
     {
-        shape.setSize(sf::Vector2f(50, 50));
+        shape.setSize(sf::Vector2f(450, 350));
         shape.setPosition(position);
         shape.setFillColor(color);
 
@@ -33,7 +33,7 @@ public:
         if (clock.getElapsedTime().asSeconds() >= frameTime)
         {
             currentFrame = (currentFrame + 1) % numFrames;
-            sprite.setTextureRect(sf::IntRect((currentFrame * 64)+17, 133, 64, 36));
+            sprite.setTextureRect(sf::IntRect((currentFrame * 32)+2, 30, 220, 300));
             clock.restart();
         }
     }
@@ -46,17 +46,17 @@ private:
     float frameTime = 0.1f;
     int currentFrame = 0;
     int numFrames = 4;
-    int frameWidth = 32;
-    int frameHeight = 32;
+    int frameWidth = 320;
+    int frameHeight = 320;
 };
 
 double velocidad = 0.1;
 
 int main()
 {
-    sf::RenderWindow window(sf::VideoMode(800, 600), "JuegoTekken");
+    sf::RenderWindow window(sf::VideoMode(500, 500), "JuegoTekken");
 
-    Personaje pj(sf::Vector2f(400, 300), sf::Color::Red);
+    Personaje pj(sf::Vector2f(400, 300), sf::Color::Black);
 
     while (window.isOpen())
     {
