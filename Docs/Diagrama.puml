@@ -1,3 +1,5 @@
+@startuml
+
 Class Personje
 class Imagen
 Class sprite
@@ -14,94 +16,17 @@ Class OpenGL
 Class System
 Class Window
 
-class Personje {
-  +nombre: String
-  +posicionX: int
-  +posicionY: int
-  +mover(x: int, y: int): void
-  +atacar(objetivo: Personje): void
-}
+Personje --|> Sprite
+Personje -- Teclado
+Sprite --|> Imagen
+Ventana --|> Graphics
+Ventana -- Audio
+Config --|> GpuPreference
+Config --|> Graphics
+Main -- Network
+Main -- OpenGL
+Main -- Config
+Main -- System
+Main -- Window
 
-class Imagen {
-  +ruta: String
-  +mostrar(): void
-}
-
-class Sprite {
-  +imagen: Imagen
-  +animar(): void
-}
-
-class Teclado {
-  +teclaPresionada(tecla: String): boolean
-}
-
-class Texto {
-  +contenido: String
-  +mostrar(): void
-}
-
-class Ventana {
-  +titulo: String
-  +ancho: int
-  +alto: int
-  +mostrar(): void
-}
-
-class Audio {
-  +archivo: String
-  +reproducir(): void
-}
-
-class Config {
-  +ajustes: Map<String, String>
-  +guardar(): void
-  +cargar(): void
-}
-
-class GpuPreference {
-  +tipo: String
-}
-
-class Graphics {
-  +resolucion: String
-  +ajustarConfiguracion(): void
-}
-
-class Main {
-  +main(): void
-}
-
-class Network {
-  +conectar(): void
-  +enviarDatos(datos: String): void
-  +recibirDatos(): String
-}
-
-class OpenGL {
-  +version: String
-  +inicializar(): void
-}
-
-class System {
-  +iniciar(): void
-  +apagar(): void
-}
-
-class Window {
-  +titulo: String
-  +mostrarContenido(contenido: String): void
-}
-
-Personje --|> Sprite : Tiene un
-Personje -- Teclado : Usa un
-Sprite --|> Imagen : Tiene un
-Ventana --|> Graphics : Utiliza
-Ventana -- Audio : Utiliza
-Config --|> GpuPreference : Contiene
-Config --|> Graphics : Contiene
-Main -- Network : Usa un
-Main -- OpenGL : Usa un
-Main -- Config : Usa un
-Main -- System : Usa un
-Main -- Window : Usa un
+@enduml
